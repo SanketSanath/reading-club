@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Find Friend</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://ajax.aspnetcdn.com/ajax/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="/assets/js/find_friend.js"></script>
+	<link rel="stylesheet" type="text/css" href="/assets/css/find_friend.css">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700|Raleway:300,400,500&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.0/css/all.css" integrity="sha384-Mmxa0mLqhmOeaE8vgOSbKacftZcsNYDjQzuCOm6D02luYSzBG8vpaOykv9lFQ51Y" crossorigin="anonymous">
+</head>
+<body>
+	
+	<!-- Navigation -->
+	<%- include partials/navigation.ejs %>
+
+	<div class="container">
+
+		<div class="table-responsive">
+			<table class="table table-condensed table-hover">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">Name</th>
+						<th scope="col">Username</th>
+						<th scope="col">Visit Profile</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% for(i = 0; i < data.length; i++) { %>
+					<tr>
+						<td><%= data[i].name %></td>
+						<td><%= data[i].username %></td>
+						<td> <a href="/profile/<%= data[i]._id %>"> <i class="fas fa-link friend"></i> </a> </td>
+					</tr>
+					<% } %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</body>
+</html>

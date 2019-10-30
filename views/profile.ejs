@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Profile</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://ajax.aspnetcdn.com/ajax/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="/assets/js/profile.js"></script>
+	<link rel="stylesheet" type="text/css" href="/assets/css/me.css">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700|Raleway:300,400,500&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.0/css/all.css" integrity="sha384-Mmxa0mLqhmOeaE8vgOSbKacftZcsNYDjQzuCOm6D02luYSzBG8vpaOykv9lFQ51Y" crossorigin="anonymous">
+</head>
+<body>
+	
+	<!-- Navigation -->
+	<%- include partials/navigation.ejs %>
+
+	<div class="container">
+
+		<!-- Portfolio Item Row -->
+		<div class="row name-container">
+
+			<div class="col-md-7 name-block d-flex align-items-center">
+				<!-- <img class="img-fluid" src="http://placehold.it/750x500" alt=""> -->
+				<div class="name-block-inner">
+					<h1><%= name %></h1>
+					<h5 class="thin">@<%= username %></h5>
+					<button id="add_friend" value="<%= username %>" class="btn btn-block btn-du">Add Friend</button>
+				</div>
+			</div>
+
+			<div class="col-md-5 d-flex align-items-center">
+				<p style="padding-top: 10px; padding-bottom: 10px;">
+					Accomplishment:&nbsp;
+					<span class="golden-star">
+						<!-- Golden Star -->
+						<% for (var i = 0; i < star; i++) {%>
+						<i class="fas fa-star"></i>
+						<% } %>
+						<!-- blank star -->
+						<% for (var i = 0; i < 7-star; i++) {%>
+						<i class="far fa-star"></i>
+						<% } %>
+					</span>
+					<br>
+					Total pages read : <%= total_pages %>
+					<br>
+					Total books finished: <%= books_read.length %>
+					<br>
+				</p>
+			</div>
+
+		</div>
+		<!-- /.row -->
+
+		
+		
+	</div>
+	<!-- /.container -->
+
+	<!-- Detail View -->
+	<div class="container">
+		
+
+		<ul class="nav nav-tabs" style="margin-bottom: 10px;">
+			<li class="nav-item"><a data-toggle="tab" href="#daily-activity" class="nav-link active">Daily Activity</a></li>
+			<li class="nav-item"><a data-toggle="tab" href="#book-list" class="nav-link">Books Read</a></li>
+			<li class="nav-item"><a data-toggle="tab" href="#friends" class="nav-link">Friends</a></li>
+		</ul>
+
+		<div class="tab-content">
+
+			<!-- Daily Activity Tab -->
+			<div id="daily-activity" class="tab-pane fade in active show">
+
+				<!-- Table of reading habbit -->
+				<div class="table-responsive">
+					<table class="table table-condensed table-hover">
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col">Date</th>
+								<th scope="col">Book Name</th>
+								<th scope="col">Pages Read</th>
+								<th scope="col">Positive Feeling</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% var j = progress.length %>
+							<% for(i = j -1; i >= 0; i--) { %>
+							<tr>
+								<td><%= progress[i].date %></td>
+								<td><%= progress[i].book_name %></td>
+								<td><%= progress[i].page_read_today %></td>
+								<td><%= progress[i].one_positive_thing %></td>
+							</tr>
+							<% } %>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<!-- Book List -->
+			<div id="book-list" class="tab-pane fade">
+				<div class="table-responsive">
+					<table class="table table-condensed table-hover">
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col">#</th>
+								<th scope="col">Book Name</th>
+								<th scope="col">Author</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% var j = books_read.length %>
+							<% for(i = j -1; i >= 0; i--) { %>
+							<tr>
+								<th scope="row"><%= j - i %></th>
+								<td><%= books_read[i].book_name %></td>
+								<td><%= books_read[i].book_author %></td>
+							</tr>
+							<% } %>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div id="friends" class="tab-pane fade">
+				<div class="table-responsive">
+					<table class="table table-condensed table-hover">
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col">Name</th>
+								<th scope="col">Username</th>
+								<th scope="col">Visit Profile</th>
+							</tr>
+						</thead>
+						<tbody>
+							
+							<% var j = friends.length %>
+							<% for(i = j -1; i >= 0; i--) { %>
+							<tr>
+								<td><%= friends[i].name %></td>
+								<td><%= friends[i]._id %></td>
+								<td> <a href="/profile/<%= friends[i]._id %>"> <i class="fas fa-link friend"></i> </a> </td>
+							</tr>
+							<% } %>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+
+
+	</body>
+	</html>

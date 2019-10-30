@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Enter</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://ajax.aspnetcdn.com/ajax/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="/assets/js/enter.js"></script>
+	<link rel="stylesheet" type="text/css" href="/assets/css/enter.css">
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row no-gutter enter">
+			<div class="d-md-flex col-md-4 col-lg-6 bg-image">
+				<div class="d-flex align-items-center" style="height: 100%; width: 100%;">
+					<div class="title-div">
+						<h1 class="title">Reading Club</h1>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-8 col-lg-6">
+				<div class="login d-flex align-items-center py-5">
+					<div class="container">
+						<div class="row">
+
+							<!-- login form -->
+							<div class="col-md-9 col-lg-8 mx-auto" id="login-block">
+								<h3 class="login-heading mb-4">Welcome back!</h3>
+								<form>
+									<div class="form-label-group">
+										<input type="text" id="loginUsername" class="form-control" placeholder="Username" required autofocus>
+										<label for="loginUsername">Username</label>
+									</div>
+
+									<div class="form-label-group">
+										<input type="password" id="loginPassword" class="form-control" placeholder="Password" required>
+										<label for="loginPassword">Password</label>
+									</div>
+
+									<button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit" id="login">Log in</button>
+									<div class="text-center small">
+										Don't have account? <a href="#" class="toggle-enter">Create account</a>
+									</div>
+								</form>
+							</div>
+						</div>
+
+						<!-- register form -->
+						<div class="col-md-9 col-lg-8 mx-auto" id="register-block" style="display: none;">
+							<h3 class="login-heading mb-4">Welcome to the club!</h3>
+							<form>
+								<div class="form-label-group">
+									<input type="text" id="registerName" class="form-control" placeholder="Name" required autofocus>
+									<label for="registerName">Name</label>
+								</div>
+
+								<div class="form-label-group">
+									<input type="text" id="registerUsername" class="form-control" placeholder="Username" required autofocus>
+									<label for="registerUsername">Username</label>
+								</div>
+
+								<div class="form-label-group">
+									<input type="password" id="registerPassword" class="form-control" placeholder="Password" required>
+									<label for="registerPassword">Password</label>
+								</div>
+
+								<button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit" id="signin">Sign in</button>
+								<div class="text-center small">
+									Already have account? <a href="#" class="toggle-enter">Log in</a></div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
