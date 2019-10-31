@@ -13,11 +13,13 @@ module.exports = function(app, session){
 			var fr_list = data.friends.map(a => a._id)
 			console.log(fr_list)
 
-			ProgressModel.find({"username": {$in: fr_list}}, function(err, data){
-				console.log(data)
+			ProgressModel.find({"username": {$in: fr_list}})
+			.sort({'date': -1})
+			.limit(30)
+			.exec(function(err, data) {
 				data = {progress: data}
 				res.render('dashboard.ejs', data)
-			})
+			});
 		})
 	})
 }
