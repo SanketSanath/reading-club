@@ -3,6 +3,7 @@ var session = require('express-session')
 
 var enterController = require('./server/controller/enterController')
 var meController = require('./server/controller/meController')
+var dashboardController = require('./server/controller/dashboardController')
 var friendController = require('./server/controller/friendController')
 
 
@@ -32,6 +33,7 @@ app.use(function(req, res, next) {
 // controller
 enterController(app, session)
 meController(app, session)
+dashboardController(app, session)
 friendController(app, session)
 
 

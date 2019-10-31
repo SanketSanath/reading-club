@@ -10,7 +10,9 @@ $(document).ready(function(){
 	// register
 	$('#signin').click(function(e){
 		e.preventDefault()
+		$(this).prop("disabled",true)
 		var name = $('#registerName').val()
+
 		var username = $('#registerUsername').val()
 		var password = $('#registerPassword').val()
 		
@@ -20,7 +22,7 @@ $(document).ready(function(){
 			data: {name, username, password},
 			success : function(data, textStatus, xhr){
 		        //do something with data
-		        window.location = "/me"
+		        window.location = "/dashboard"
 		    },
 		    complete: function(xhr, textStatus) {
 		    	console.log(xhr.status)
@@ -36,6 +38,8 @@ $(document).ready(function(){
 	// login
 	$('#login').click(function(e){
 		e.preventDefault()
+		$(this).prop("disabled",true)
+
 		var username = $('#loginUsername').val()
 		var password = $('#loginPassword').val()
 
@@ -44,7 +48,7 @@ $(document).ready(function(){
 			url: '/login',
 			data: {username, password},
 			success : function(data){
-				window.location = "/me"
+				window.location = "/dashboard"
 			},
 			complete: function(xhr, textStatus){
 				console.log(xhr.status)
