@@ -22,7 +22,6 @@
 		<div class="row name-container">
 
 			<div class="col-md-7 name-block d-flex align-items-center">
-				<!-- <img class="img-fluid" src="http://placehold.it/750x500" alt=""> -->
 				<div class="name-block-inner">
 					<h1><%= name %></h1>
 					<h5 class="thin">@<%= username %></h5>
@@ -75,29 +74,7 @@
 			<div id="daily-activity" class="tab-pane fade in active show">
 
 				<!-- Table of reading habbit -->
-				<div class="table-responsive">
-					<table class="table table-condensed table-hover">
-						<thead class="thead-dark">
-							<tr>
-								<th scope="col">Date</th>
-								<th scope="col">Book Name</th>
-								<th scope="col">Pages Read</th>
-								<th scope="col">Positive Feeling</th>
-							</tr>
-						</thead>
-						<tbody>
-							<% var j = progress.length %>
-							<% for(i = j -1; i >= 0; i--) { %>
-							<tr>
-								<td><%= progress[i].date %></td>
-								<td><%= progress[i].book_name %></td>
-								<td><%= progress[i].page_read_today %></td>
-								<td><%= progress[i].one_positive_thing %></td>
-							</tr>
-							<% } %>
-						</tbody>
-					</table>
-				</div>
+				<%- include partials/me_progress %>
 			</div>
 
 			<!-- Book List -->
@@ -126,28 +103,7 @@
 			</div>
 
 			<div id="friends" class="tab-pane fade">
-				<div class="table-responsive">
-					<table class="table table-condensed table-hover">
-						<thead class="thead-dark">
-							<tr>
-								<th scope="col">Name</th>
-								<th scope="col">Username</th>
-								<th scope="col">Visit Profile</th>
-							</tr>
-						</thead>
-						<tbody>
-							
-							<% var j = friends.length %>
-							<% for(i = j -1; i >= 0; i--) { %>
-							<tr>
-								<td><%= friends[i].name %></td>
-								<td><%= friends[i]._id %></td>
-								<td> <a href="/profile/<%= friends[i]._id %>"> <i class="fas fa-link friend"></i> </a> </td>
-							</tr>
-							<% } %>
-						</tbody>
-					</table>
-				</div>
+				<%- include partials/friend_list.ejs %>
 			</div>
 		</div>
 

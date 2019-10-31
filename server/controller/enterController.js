@@ -1,5 +1,6 @@
 const bodyParser = require('body-parser')
-
+const bcrypt = require('bcrypt')
+const saltRounds = 1
 var {mongoose, UserModel} = require('../db/model')
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
@@ -14,11 +15,12 @@ module.exports = function(app, session){
 	app.post('/register', urlencodedParser, function(req, res){
 		var name = req.body.name
 		var username = req.body.username
-		var password = req.body.password
+		var password = bcrypt.hashSync(req.body.password, saltRounds)
+
 		var newUser = {
 			_id: username,
 			name, username, password, total_pages: 0, private_account: false,
-			books_read: [], progress: [], friends: []
+			books_read: [], progress: [], friends: [{_id: username, name: name}]
 		}
 
 		UserModel.findById(username, function(err, data){
@@ -43,7 +45,7 @@ module.exports = function(app, session){
 			if(err) throw err
 			if(data == null){
 				res.status(404).send('User not exist')
-			} else if(data.password === password){
+			} else if(bcrypt.compareSync(password, data.password)){
 				// user exist and password is correct
 				req.session.username=data.username
 				res.status(200).send('ok')

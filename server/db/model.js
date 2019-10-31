@@ -4,8 +4,6 @@ const mongoose = require('mongoose')
 DB_USERNAME = process.env.DB_USERNAME
 DB_PASSWORD = process.env.DB_PASSWORD
 
-console.log(DB_USERNAME)
-console.log(DB_PASSWORD)
 
 // connect to mongodb database
 mongoose.connect('mongodb://'+DB_USERNAME+':'+DB_PASSWORD+'@ds251894.mlab.com:51894/reading-club', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
@@ -19,7 +17,7 @@ var UserSchema = new mongoose.Schema({
 	password: String,
 	total_pages: Number,
 	books_read: [{book_name: String, book_author: String}],
-	progress: [{book_name: String, page_read_today: Number, one_positive_thing: String, date: String}],
+	progress: [{b_name: String, p_read: Number, positive: String, date: String}], //	progress: [{book_name: String, page_read_today: Number, one_positive_thing: String, date: String}],
 	friends: [{_id: String, name: String}]
 })
 

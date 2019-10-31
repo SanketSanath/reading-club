@@ -81,6 +81,16 @@ $(document).ready(function(){
 			$("#du-form-4").hide()
 			$("#du-cancel").hide()
 		})
+
+
+		// prevent submit on enter
+		$('.du-form').on('keyup keypress', function(e) {
+			var keyCode = e.keyCode || e.which;
+			if (keyCode === 13) { 
+			e.preventDefault();
+			return false;
+		}
+});
 	})
 
 	// find friend

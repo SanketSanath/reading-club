@@ -22,4 +22,30 @@ module.exports = function(app, session){
 			});
 		})
 	})
+
+
+	app.post('/update_daily', urlencodedParser, authenticate, function(req, res){
+		var username = req.session.username
+		var obj = {
+			"b_name": req.body.book_name,
+			"p_read": req.body.pages,
+			"positive": req.body.feeling,
+			"date": req.body.date
+		}
+
+		UserModel.findByIdAndUpdate(username, {$push: {progress: obj}, $inc : {'total_pages' : req.body.pages}}, function(err, data){
+			if(err) throw err
+			ProgressModel({
+				username: username,
+				b_name: req.body.book_name,
+				p_read: req.body.pages,
+				positive: req.body.feeling,
+				date: req.body.date
+			}).save(function(err, data){
+				if(err) throw err
+				res.status(200).send('ok')
+			})
+		})
+
+	})
 }

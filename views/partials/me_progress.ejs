@@ -1,0 +1,23 @@
+<div class="table-responsive">
+	<table class="table table-condensed table-hover">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">Date</th>
+				<th scope="col">Book Name</th>
+				<th scope="col">Pages Read</th>
+				<th scope="col">Positive Feeling</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% var j = progress.length %>
+			<% for(i = j -1; i >= 0; i--) { %>
+			<tr>
+				<td><%= progress[i].date %></td>
+				<td><%= progress[i].b_name %></td>
+				<td><%= progress[i].p_read %></td>
+				<td><%= progress[i].positive %></td>
+			</tr>
+			<% } %>
+		</tbody>
+	</table>
+</div>

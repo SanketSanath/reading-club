@@ -74,29 +74,7 @@
 			<div id="daily-activity" class="tab-pane fade in active show">
 
 				<!-- Table of reading habbit -->
-				<div class="table-responsive">
-					<table class="table table-condensed table-hover">
-						<thead class="thead-dark">
-							<tr>
-								<th scope="col">Date</th>
-								<th scope="col">Book Name</th>
-								<th scope="col">Pages Read</th>
-								<th scope="col">Positive Feeling</th>
-							</tr>
-						</thead>
-						<tbody>
-							<% var j = progress.length %>
-							<% for(i = j -1; i >= 0; i--) { %>
-							<tr>
-								<td><%= progress[i].date %></td>
-								<td><%= progress[i].book_name %></td>
-								<td><%= progress[i].page_read_today %></td>
-								<td><%= progress[i].one_positive_thing %></td>
-							</tr>
-							<% } %>
-						</tbody>
-					</table>
-				</div>
+				<%- include partials/me_progress %>
 			</div>
 
 			<!-- Book List -->
@@ -147,31 +125,7 @@
 			</div>
 
 			<div id="friends" class="tab-pane fade">
-				<div class="table-responsive">
-					<table class="table table-condensed table-hover">
-						<thead class="thead-dark">
-							<tr>
-								<th scope="col">Name</th>
-								<th scope="col">Username</th>
-								<th scope="col">Visit Profile</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td id="#find-friend" colspan="3" style="text-align: center;"><a href="/find_friend">Find Friend</a></td>
-							</tr>
-
-							<% var j = friends.length %>
-							<% for(i = j -1; i >= 0; i--) { %>
-							<tr>
-								<td><%= friends[i].name %></td>
-								<td><%= friends[i]._id %></td>
-								<td> <a href="/profile/<%= friends[i]._id %>"> <i class="fas fa-link friend"></i> </a> </td>
-							</tr>
-							<% } %>
-						</tbody>
-					</table>
-				</div>
+				<%- include partials/friend_list.ejs %>
 			</div>
 		</div>
 
