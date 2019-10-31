@@ -9,7 +9,10 @@ module.exports = function(app, session){
 		var username = req.session.username
 
 		UserModel.findById(username, ['friends'], function(err, data){
-			if(err) throw err
+			if(err){
+				console.log(err)
+				res.status(500).send('server error')
+			}
 			var fr_list = data.friends.map(a => a._id)
 			console.log(fr_list)
 
@@ -17,6 +20,10 @@ module.exports = function(app, session){
 			.sort({'date': -1})
 			.limit(30)
 			.exec(function(err, data) {
+				if(err){
+					console.log(err)
+					res.status(500).send('server error')
+				}
 				data = {progress: data}
 				res.render('dashboard.ejs', data)
 			});
@@ -34,7 +41,10 @@ module.exports = function(app, session){
 		}
 
 		UserModel.findByIdAndUpdate(username, {$push: {progress: obj}, $inc : {'total_pages' : req.body.pages}}, function(err, data){
-			if(err) throw err
+			if(err){
+				console.log(err)
+				res.status(500).send('server error')
+			}
 			ProgressModel({
 				username: username,
 				b_name: req.body.book_name,
@@ -42,7 +52,10 @@ module.exports = function(app, session){
 				positive: req.body.feeling,
 				date: req.body.date
 			}).save(function(err, data){
-				if(err) throw err
+				if(err){
+					console.log(err)
+					res.status(500).send('server error')
+				}
 				res.status(200).send('ok')
 			})
 		})

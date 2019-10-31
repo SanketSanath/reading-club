@@ -24,7 +24,10 @@ module.exports = function(app, session){
 		}
 
 		UserModel.findById(username, function(err, data){
-			if(err) throw err
+			if(err){
+				console.log(err)
+				res.status(500).send('server error')
+			}
 			if(data == null){
 				UserModel(newUser).save(function(err, data){
 					if(err) throw err
@@ -32,7 +35,7 @@ module.exports = function(app, session){
 					res.status(200).send('ok')
 				})
 			} else {
-				res.status(409).json(data)
+				res.status(409).send('user already exist')
 			}
 		})
 
@@ -42,7 +45,10 @@ module.exports = function(app, session){
 		var username = req.body.username
 		var password = req.body.password
 		UserModel.findById(username, function(err, data){
-			if(err) throw err
+			if(err){
+				console.log(err)
+				res.status(500).send('server error')
+			}
 			if(data == null){
 				res.status(404).send('User not exist')
 			} else if(bcrypt.compareSync(password, data.password)){

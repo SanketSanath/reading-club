@@ -6,7 +6,7 @@ var meController = require('./server/controller/meController')
 var dashboardController = require('./server/controller/dashboardController')
 var friendController = require('./server/controller/friendController')
 
-
+const port= process.env.PORT || 3000
 const app = express()
 
 // express session
@@ -37,6 +37,6 @@ dashboardController(app, session)
 friendController(app, session)
 
 
-app.listen(3000, ()=>{
-	console.log('app is running on port 3000')
+app.listen(port, ()=>{
+	console.log('app is running on port ' + port)
 })

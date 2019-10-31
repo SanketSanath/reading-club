@@ -10,7 +10,10 @@ module.exports = function(app, session) {
 	app.get('/find_friend', authenticate, function(req, res){
 
 		UserModel.find({}, ['name', 'username'], function(err, data){
-			if(err) throw err
+			if(err){
+				console.log(err)
+				res.status(500).send('server error')
+			}
 			res.render('find_friend.ejs', {data})
 
 		})
@@ -20,7 +23,10 @@ module.exports = function(app, session) {
 		var username = req.params.id
 
 		UserModel.findById(username, {progress:{$slice:-14}}, function(err, data){
-			if(err) throw err
+			if(err){
+				console.log(err)
+				res.status(500).send('server error')
+			}
 			if(data == null){
 				res.status(404).send('User not exist')
 			} else {
@@ -50,7 +56,10 @@ module.exports = function(app, session) {
 			}
 
 			UserModel.findByIdAndUpdate(username, { $addToSet: {friends: friendupd}}, function(err, data){
-				if(err) throw err
+				if(err){
+					console.log(err)
+					res.status(500).send('server error')
+				}
 				res.status(200).send('ok')
 			})
 		})

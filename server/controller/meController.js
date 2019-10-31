@@ -11,7 +11,10 @@ module.exports = function(app, session) {
 
 		// get user detail
 		UserModel.findById(username, {progress:{$slice:-10}}, function(err, data){
-			if(err) throw err
+			if(err){
+				console.log(err)
+				res.status(500).send('server error')
+			}
 			if(data == null){
 				res.status(404).send('User not exist')
 			} else {
@@ -39,7 +42,10 @@ module.exports = function(app, session) {
 		else{
 			var book = {"book_name": book_name, "book_author": author}
 			UserModel.findByIdAndUpdate(username, {$push: {books_read: book}}, function(err, data){
-				if(err) throw err
+				if(err){
+					console.log(err)
+					res.status(500).send('server error')
+				}
 				res.status(200).send('ok')
 			})
 		}
@@ -58,7 +64,10 @@ module.exports = function(app, session) {
 
 		// delete book
 		UserModel.findByIdAndUpdate( username, { $pull: {books_read: {_id: book_id} }}, { safe: true, multi:true }, function(err, data){
-			if(err) throw err
+			if(err){
+				console.log(err)
+				res.status(500).send('server error')
+			}
 			res.status(200).send('ok')
 		})
 	})

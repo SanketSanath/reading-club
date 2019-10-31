@@ -4,7 +4,11 @@
   "description": "Online reading club to make daily reading habbit",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "8.12.0"
   },
   "keywords": [
     "online",
@@ -19,7 +23,6 @@
     "ejs": "^2.7.1",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
-    "moment": "^2.24.0",
     "mongoose": "^5.7.6"
   }
 }
