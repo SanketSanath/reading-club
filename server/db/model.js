@@ -20,6 +20,15 @@ var UserSchema = new mongoose.Schema({
 	friends: [{_id: String, name: String}]
 })
 
-var UserModel = mongoose.model('User', UserSchema)
+var ProgressSchema = new mongoose.Schema({
+	username: String, // who is reading the book
+	b_name: String,
+	p_read: Number,
+	positive: String,
+	date: String
+})
 
-module.exports = {mongoose, UserModel}
+var UserModel = mongoose.model('User', UserSchema)
+var ProgressModel = mongoose.model('Progress', ProgressSchema)
+
+module.exports = {mongoose, UserModel, ProgressModel}
