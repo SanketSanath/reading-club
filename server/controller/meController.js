@@ -10,7 +10,7 @@ module.exports = function(app, session) {
 		var username = req.session.username
 
 		// get user detail
-		UserModel.findById(username, {progress:{$slice:-10}}, function(err, data){
+		UserModel.findById(username, {progress:{$slice:-21}}, function(err, data){
 			if(err){
 				console.log(err)
 				res.status(500).send('server error')
@@ -27,6 +27,8 @@ module.exports = function(app, session) {
 					progress: data.progress,
 					friends: data.friends
 				}
+
+				data.books_read.sort(function(m1, m2) { return m1.rating - m2.rating; })
 				res.render('me.ejs', data)
 			}
 		})
@@ -34,13 +36,15 @@ module.exports = function(app, session) {
 
 	app.post('/add_book', urlencodedParser, authenticate, function(req, res){
 		var username = req.session.username
-		var book_name = req.body.book_name
+		var b_name = req.body.b_name
 		var author = req.body.author
+		var rating = req.body.book_rating
+		var review = req.body.review
 
-		if(book_name.length == 0 || author.length == 0)
+		if(b_name.length == 0 || author.length == 0 || review.length == 0)
 			res.status(415).send('incomplete data')
 		else{
-			var book = {"book_name": book_name, "book_author": author}
+			var book = {"b_name": b_name, "b_author": author, "rating": rating, "review": review}
 			UserModel.findByIdAndUpdate(username, {$push: {books_read: book}}, function(err, data){
 				if(err){
 					console.log(err)
@@ -56,8 +60,8 @@ module.exports = function(app, session) {
 		var username = req.session.username
 		var book_id = req.body.book_id
 
-		console.log(username)
-		console.log(book_id)
+		// console.log(username)
+		// console.log(book_id)
 
 		if(book_id === '' || book_id === undefined || book_id === null)
 			res.status(415)

@@ -81,21 +81,49 @@
 			<div id="book-list" class="tab-pane fade">
 				<div class="container" style="margin-bottom: 5px; margin-top: 10px;">
 					<form class="row">
-						<div class="col-md-5">
+						<div class="col-md-6">
+
+							<!-- Book Name -->
 							<div class="form-label-group">
 								<input type="text" id="book-name" class="form-control" placeholder="Book Name" required>
 								<label for="book-name">Book Name</label>
 							</div>
-						</div>
-						<div class="col-md-5">
+
+							<!-- Author Name -->
 							<div class="form-label-group">
 								<input type="text" id="book-author" class="form-control" placeholder="Author" required>
 								<label for="book-author">Author</label>
 							</div>
+
+							<!-- Star -->
+							<div class="d-flex align-items-center form-label-group ml-4" >
+								<div id="rating">
+									Rating:&nbsp;&nbsp;&nbsp;
+									<span class="golden-star">
+										<i class="far fa-star" value="1"></i>
+										<i class="far fa-star" value="2"></i>
+										<i class="far fa-star" value="3"></i>
+										<i class="far fa-star" value="4"></i>
+										<i class="far fa-star" value="5"></i>
+									</span>
+								</div>
+							</div>
 						</div>
-						<div class="col-md-2">
+						
+
+						<div class="col-md-6">
+
+							<!-- Review -->
+							<div class="form-label-group">
+								<textarea id="b-review" class="form-control" placeholder="Write review of the book" rows="4"></textarea>
+								<label for="review">Write review of the book</label>
+							</div>
+
+							<!-- Add button -->
 							<button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit" id="add-book">Add</button>
 						</div>
+
+
 
 					</form>
 				</div>
@@ -106,6 +134,8 @@
 								<th scope="col">#</th>
 								<th scope="col">Book Name</th>
 								<th scope="col">Author</th>
+								<th scope="col">Rating</th>
+								<th scope="col">Review</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -114,8 +144,19 @@
 							<% for(i = j -1; i >= 0; i--) { %>
 							<tr>
 								<th scope="row"><%= j - i %></th>
-								<td><%= books_read[i].book_name %></td>
-								<td><%= books_read[i].book_author %></td>
+								<td style="min-width: 130px;"><%= books_read[i].b_name %></td>
+								<td style="min-width: 130px;"><%= books_read[i].b_author %></td>
+								<td style="min-width: 130px;" class="golden-star">
+									<!-- Golden Star -->
+									<% for (var k = 0; k < books_read[i].rating; k++) {%>
+									<i class="fas fa-star"></i>
+									<% } %>
+									<!-- blank star -->
+									<% for (var k = 0; k < 5-books_read[i].rating; k++) {%>
+									<i class="far fa-star"></i>
+									<% } %>
+								</td>
+								<td style="min-width: 400px;"><%= books_read[i].review %></td>
 								<td><button class="book-delete btn" value="<%= books_read[i]._id %>"><i class="far fa-trash-alt"></i></button></td>
 							</tr>
 							<% } %>

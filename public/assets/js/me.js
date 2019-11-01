@@ -4,16 +4,40 @@ $(document).ready(function(){
 	$('#dashboard_active').removeClass('active')
 	$('#friend_active').removeClass('active')
 
+	var book_rating = 0
+
+	var star = $('#rating i')
+	for(var i = 0; i < star.length; i++){
+		console.log(star[i])
+		star[i].addEventListener("click",function(){
+			book_rating = this.getAttribute("value")
+			console.log(book_rating)
+			clearClass()
+
+			for(var j=book_rating-1;j>=0;j--){
+				star[j].classList.toggle('fas');
+			}
+
+			for(var j=book_rating;j < star.length; j++){
+				star[j].classList.toggle('far');
+			}
+		})
+	}
+
 	$("#add-book").click(function(e){
 		e.preventDefault()
 		$(this).prop("disabled",true)
-		var book_name = $("#book-name").val()
-		var author = $('#book-author').val()
+		var b_name = $("#book-name").val().trim()
+		var author = $('#book-author').val().trim()
+		var review = $('#b-review').val().trim()
+
+		console.log('rating: '+book_rating)
+		console.log('review: '+review)
 
 		$.ajax({
 			type: 'POST',
 			url: '/add_book',
-			data: {book_name, author},
+			data: {b_name, author, book_rating, review},
 			success: function(data, textStatus, xhr){
 				// window.location = "/"
 				location.reload()
@@ -48,3 +72,13 @@ $(document).ready(function(){
 
 	
 })
+
+
+function clearClass(){
+  var star = $('#rating i')
+  for(var i=0;i<star.length;i++){
+      //console.log(x[i].classList);
+      star[i].classList.remove('far')
+      star[i].classList.remove('fas')
+  };
+}

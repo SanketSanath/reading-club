@@ -4,6 +4,10 @@ body {
 	font-family: 'Lato', sans-serif;
 }
 
+.thin-text {
+	font-weight: 300;
+}
+
 .du-form {
 	background: linear-gradient(90deg, #9ebd13 0%, #008552 100%);
 	padding: 20px;

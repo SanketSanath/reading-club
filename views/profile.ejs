@@ -86,6 +86,8 @@
 								<th scope="col">#</th>
 								<th scope="col">Book Name</th>
 								<th scope="col">Author</th>
+								<th scope="col">Rating</th>
+								<th scope="col">Review</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -93,8 +95,19 @@
 							<% for(i = j -1; i >= 0; i--) { %>
 							<tr>
 								<th scope="row"><%= j - i %></th>
-								<td><%= books_read[i].book_name %></td>
-								<td><%= books_read[i].book_author %></td>
+								<td style="min-width: 130px;"><%= books_read[i].b_name %></td>
+								<td style="min-width: 130px;"><%= books_read[i].b_author %></td>
+								<td style="min-width: 130px;" class="golden-star">
+									<!-- Golden Star -->
+									<% for (var k = 0; k < books_read[i].rating; k++) {%>
+									<i class="fas fa-star"></i>
+									<% } %>
+									<!-- blank star -->
+									<% for (var k = 0; k < 5-books_read[i].rating; k++) {%>
+									<i class="far fa-star"></i>
+									<% } %>
+								</td>
+								<td style="min-width: 400px;"><%= books_read[i].review %></td>
 							</tr>
 							<% } %>
 						</tbody>

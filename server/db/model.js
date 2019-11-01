@@ -16,7 +16,7 @@ var UserSchema = new mongoose.Schema({
 	username: String,
 	password: String,
 	total_pages: Number,
-	books_read: [{book_name: String, book_author: String}],
+	books_read: [{b_name: String, b_author: String, rating: Number, review: String}],
 	progress: [{b_name: String, p_read: Number, positive: String, date: String}], //	progress: [{book_name: String, page_read_today: Number, one_positive_thing: String, date: String}],
 	friends: [{_id: String, name: String}],
 	followers: [{_id: String, name: String}]
