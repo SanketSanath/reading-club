@@ -25,7 +25,7 @@ module.exports = function(app, session) {
 					star: calculateStar(data.total_pages),
 					books_read: data.books_read,
 					progress: data.progress,
-					friends: data.friends,
+					following: data.following,
 					followers: data.followers
 				}
 

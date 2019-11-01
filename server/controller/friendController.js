@@ -37,7 +37,7 @@ module.exports = function(app, session) {
 					star: calculateStar(data.total_pages),
 					books_read: data.books_read,
 					progress: data.progress,
-					friends: data.friends,
+					following: data.following,
 					followers: data.followers
 				}
 				res.render('profile.ejs', data)
@@ -55,7 +55,7 @@ module.exports = function(app, session) {
 				console.log(err)
 				res.status(500).send('server error')
 			}
-			var friendupd = {
+			var following_obj = {
 				_id: data._id,
 				name: data.name
 			}
@@ -63,7 +63,7 @@ module.exports = function(app, session) {
 			// find name of user and add to the list of follower
 			add_follower(username, add_id)
 
-			UserModel.findByIdAndUpdate(username, { $addToSet: {friends: friendupd}}, function(err, data){
+			UserModel.findByIdAndUpdate(username, { $addToSet: {following: following_obj}}, function(err, data){
 				if(err){
 					console.log(err)
 					res.status(500).send('server error')

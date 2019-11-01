@@ -70,14 +70,14 @@
 		</form>
 	</div>
 
-	<h1 class="text-center thin-text">Friend's Progress</h1>
+	<h1 class="text-center thin-text mt-2">Friend's Progress</h1>
 	<div class="container">
 	<div class="table-responsive">
 		<table class="table table-condensed table-hover">
 			<thead class="thead-dark">
 				<tr>
 					<th scope="col">Date</th>
-					<th scope="col">Username</th>
+					<th scope="col">User</th>
 					<th scope="col">Book Name</th>
 					<th scope="col">Pages Read</th>
 					<th scope="col">Positive Feeling</th>
@@ -87,11 +87,11 @@
 				<% var j = progress.length %>
 				<% for(i = j -1; i >= 0; i--) { %>
 				<tr>
-					<td><%= progress[i].date %></td>
-					<td>@<%= progress[i].username %></td>
-					<td><%= progress[i].b_name %></td>
-					<td><%= progress[i].p_read %></td>
-					<td><%= progress[i].positive %></td>
+					<td style="min-width: 100px;"><%= progress[i].date %></td>
+					<td style="min-width: 150px;"> <a href="/profile/<%=progress[i].username%>"> <%= progress[i].name %> </a> </td>
+					<td style="min-width: 150px;"><%= progress[i].b_name %></td>
+					<td style="min-width: 50px;"><%= progress[i].p_read %></td>
+					<td style="min-width: 350px;"><%= progress[i].positive %></td>
 				</tr>
 				<% } %>
 			</tbody>

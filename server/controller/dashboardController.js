@@ -8,15 +8,15 @@ module.exports = function(app, session){
 	app.get('/dashboard', authenticate, function(req, res){
 		var username = req.session.username
 
-		UserModel.findById(username, ['friends'], function(err, data){
+		UserModel.findById(username, ['following'], function(err, data){
 			if(err){
 				console.log(err)
 				res.status(500).send('server error')
 			}
-			var fr_list = data.friends.map(a => a._id)
-			console.log(fr_list)
+			var fl_list = data.following.map(a => a._id)
+			// console.log(fl_list)
 
-			ProgressModel.find({"username": {$in: fr_list}})
+			ProgressModel.find({"username": {$in: fl_list}})
 			.sort({'date': -1})
 			.limit(30)
 			.exec(function(err, data) {
@@ -45,18 +45,27 @@ module.exports = function(app, session){
 				console.log(err)
 				res.status(500).send('server error')
 			}
-			ProgressModel({
-				username: username,
-				b_name: req.body.book_name,
-				p_read: req.body.pages,
-				positive: req.body.feeling,
-				date: req.body.date
-			}).save(function(err, data){
+
+			// find name of user
+			UserModel.findById(username, ['name'], function(err, data){
 				if(err){
 					console.log(err)
 					res.status(500).send('server error')
 				}
-				res.status(200).send('ok')
+				ProgressModel({
+					username: username,
+					name: data.name,
+					b_name: req.body.book_name,
+					p_read: req.body.pages,
+					positive: req.body.feeling,
+					date: req.body.date
+				}).save(function(err, data){
+					if(err){
+						console.log(err)
+						res.status(500).send('server error')
+					}
+					res.status(200).send('ok')
+				})
 			})
 		})
 

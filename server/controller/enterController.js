@@ -20,7 +20,7 @@ module.exports = function(app, session){
 		var newUser = {
 			_id: username,
 			name, username, password, total_pages: 0, private_account: false,
-			books_read: [], progress: [], friends: [{_id: username, name: name}]
+			books_read: [], progress: [], following: [{_id: username, name: name}], followers: []
 		}
 
 		UserModel.findById(username, function(err, data){

@@ -9,12 +9,12 @@
 		</thead>
 		<tbody>
 
-			<% var j = friends.length %>
+			<% var j = following.length %>
 			<% for(i = j -1; i >= 0; i--) { %>
 			<tr>
-				<td><%= friends[i].name %></td>
-				<td><%= friends[i]._id %></td>
-				<td> <a href="/profile/<%= friends[i]._id %>"> <i class="fas fa-link friend"></i> </a> </td>
+				<td><%= following[i].name %></td>
+				<td><%= following[i]._id %></td>
+				<td> <a href="/profile/<%= following[i]._id %>"> <i class="fas fa-link friend"></i> </a> </td>
 			</tr>
 			<% } %>
 		</tbody>
