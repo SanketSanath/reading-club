@@ -12,10 +12,10 @@
 			<% var j = progress.length %>
 			<% for(i = j -1; i >= 0; i--) { %>
 			<tr>
-				<td><%= progress[i].date %></td>
-				<td><%= progress[i].b_name %></td>
-				<td><%= progress[i].p_read %></td>
-				<td><%= progress[i].positive %></td>
+				<td style="min-width: 100px;"><%= progress[i].date %></td>
+				<td style="min-width: 150px;"><%= progress[i].b_name %></td>
+				<td style="min-width: 50px;"><%= progress[i].p_read %></td>
+				<td style="min-width: 350px;"><%= progress[i].positive %></td>
 			</tr>
 			<% } %>
 		</tbody>
