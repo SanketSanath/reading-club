@@ -25,7 +25,8 @@ module.exports = function(app, session) {
 					star: calculateStar(data.total_pages),
 					books_read: data.books_read,
 					progress: data.progress,
-					friends: data.friends
+					friends: data.friends,
+					followers: data.followers
 				}
 
 				data.books_read.sort(function(m1, m2) { return m1.rating - m2.rating; })

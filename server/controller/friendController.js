@@ -7,14 +7,14 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 
 module.exports = function(app, session) {
-	app.get('/find_friend', authenticate, function(req, res){
+	app.get('/findpeople', authenticate, function(req, res){
 
 		UserModel.find({}, ['name', 'username'], function(err, data){
 			if(err){
 				console.log(err)
 				res.status(500).send('server error')
 			}
-			res.render('find_friend.ejs', {data})
+			res.render('find_people.ejs', {data})
 
 		})
 	})
@@ -28,7 +28,7 @@ module.exports = function(app, session) {
 				res.status(500).send('server error')
 			}
 			if(data == null){
-				res.status(404).send('User not exist')
+				res.status(404).send('User doesnot exist')
 			} else {
 				data = {
 					name: data.name,
@@ -37,23 +37,31 @@ module.exports = function(app, session) {
 					star: calculateStar(data.total_pages),
 					books_read: data.books_read,
 					progress: data.progress,
-					friends: data.friends
+					friends: data.friends,
+					followers: data.followers
 				}
 				res.render('profile.ejs', data)
 			}
 		})
 	})
 
-	app.post('/add_friend', authenticate, urlencodedParser, function(req, res){
+	app.post('/follow_user', authenticate, urlencodedParser, function(req, res){
 		var username = req.session.username
 		var add_id = req.body.id
 
+		// find user whom user is going to follow
 		UserModel.findById(add_id, ['name'], function(err, data){
-			console.log('data'+ data)
+			if(err){
+				console.log(err)
+				res.status(500).send('server error')
+			}
 			var friendupd = {
 				_id: data._id,
 				name: data.name
 			}
+
+			// find name of user and add to the list of follower
+			add_follower(username, add_id)
 
 			UserModel.findByIdAndUpdate(username, { $addToSet: {friends: friendupd}}, function(err, data){
 				if(err){
@@ -66,7 +74,23 @@ module.exports = function(app, session) {
 	})
 }
 
+function add_follower(follower, followed){
+	UserModel.findById(follower, ['name'], function(err, data){
+		if(err){
+			console.log(err)
+		}
 
+		var follower_obj = {
+			_id: data._id,
+			name: data.name
+		}
+
+		UserModel.findByIdAndUpdate(followed, { $addToSet: {followers: follower_obj}}, function(err, data){
+			if(err)
+				console.log(err)
+		})
+	})
+}
 
 function calculateStar(total_pages) {
 	if(total_pages < 500)

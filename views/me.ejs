@@ -65,7 +65,8 @@
 		<ul class="nav nav-tabs" style="margin-bottom: 10px;">
 			<li class="nav-item"><a data-toggle="tab" href="#daily-activity" class="nav-link active">Daily Activity</a></li>
 			<li class="nav-item"><a data-toggle="tab" href="#book-list" class="nav-link">Books Read</a></li>
-			<li class="nav-item"><a data-toggle="tab" href="#friends" class="nav-link">Friends</a></li>
+			<li class="nav-item"><a data-toggle="tab" href="#following" class="nav-link">Following</a></li>
+			<li class="nav-item"><a data-toggle="tab" href="#followers" class="nav-link">Followers</a></li>
 		</ul>
 
 		<div class="tab-content">
@@ -165,8 +166,12 @@
 				</div>
 			</div>
 
-			<div id="friends" class="tab-pane fade">
-				<%- include partials/friend_list.ejs %>
+			<div id="following" class="tab-pane fade">
+				<%- include partials/following.ejs %>
+			</div>
+
+			<div id="followers" class="tab-pane fade">
+				<%- include partials/follower.ejs %>
 			</div>
 		</div>
 

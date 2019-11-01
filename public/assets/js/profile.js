@@ -4,7 +4,7 @@ $(document).ready(function(){
 	$('me_active').removeClass('active')
 	$('friend_active').removeClass('active')
 
-	$("#add_friend").click(function(e){
+	$("#follow-btn").click(function(e){
 		e.preventDefault()
 		$(this).prop("disabled",true)
 		var id = $(this).val()
@@ -12,10 +12,10 @@ $(document).ready(function(){
 
 		$.ajax({
 			type: 'POST',
-			url: '/add_friend',
+			url: '/follow_user',
 			data: {id},
 			success: function(data, textStatus, xhr){
-				alert('added as friend')
+				alert('Now following')
 				location.reload()
 			},
 			complete: function(xhr, textStatus){
