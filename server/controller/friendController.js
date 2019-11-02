@@ -40,6 +40,8 @@ module.exports = function(app, session) {
 					following: data.following,
 					followers: data.followers
 				}
+
+				data.books_read.sort(function(m1, m2) { return m1.rating - m2.rating; })
 				res.render('profile.ejs', data)
 			}
 		})

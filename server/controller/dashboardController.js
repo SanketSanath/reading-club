@@ -5,7 +5,7 @@ var {mongoose, UserModel, ProgressModel} = require('../db/model')
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 module.exports = function(app, session){
-	app.get('/dashboard', authenticate, function(req, res){
+	app.get('/', authenticate, function(req, res){
 		var username = req.session.username
 
 		UserModel.findById(username, ['following'], function(err, data){

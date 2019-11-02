@@ -13,8 +13,8 @@ $(document).ready(function(){
 		$(this).prop("disabled",true)
 		var name = $('#registerName').val()
 
-		var username = $('#registerUsername').val()
-		var password = $('#registerPassword').val()
+		var username = $('#registerUsername').val().trim().toLowerCase()
+		var password = $('#registerPassword').val().trim()
 		
 		$.ajax({
 			type: 'POST',
@@ -22,12 +22,13 @@ $(document).ready(function(){
 			data: {name, username, password},
 			success : function(data, textStatus, xhr){
 		        //do something with data
-		        window.location = "/dashboard"
+		        window.location = "/"
 		    },
 		    complete: function(xhr, textStatus) {
 		    	console.log(xhr.status)
 		    	if(xhr.status === 409){
 		    		alert('username already exists')
+		    		$('#signin').prop("disabled",false)
 		    	}
 		    }
 
@@ -40,7 +41,7 @@ $(document).ready(function(){
 		e.preventDefault()
 		$(this).prop("disabled",true)
 
-		var username = $('#loginUsername').val()
+		var username = $('#loginUsername').val().trim().toLowerCase()
 		var password = $('#loginPassword').val()
 
 		$.ajax({
@@ -48,12 +49,13 @@ $(document).ready(function(){
 			url: '/login',
 			data: {username, password},
 			success : function(data){
-				window.location = "/dashboard"
+				window.location = "/"
 			},
 			complete: function(xhr, textStatus){
 				console.log(xhr.status)
 				if(xhr.status === 404){
-					alert('username doesn\'t exists')
+					alert('username doesn\'t exist')
+					$('#login').prop("disabled",false)
 				} else if(xhr.status === 401) {
 					alert('incorrect password')
 				} else if(xhr.status !== 200) {

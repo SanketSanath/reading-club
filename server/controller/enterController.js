@@ -8,13 +8,13 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 module.exports = function(app, session){
 
-	app.get('/', function(req, res){
+	app.get('/enter', function(req, res){
 		res.render('enter.ejs')
 	})
 
 	app.post('/register', urlencodedParser, function(req, res){
-		var name = req.body.name
-		var username = req.body.username
+		var name = req.body.name.trim()
+		var username = req.body.username.trim().toLowerCase()
 		var password = bcrypt.hashSync(req.body.password, saltRounds)
 
 		var newUser = {
@@ -42,7 +42,7 @@ module.exports = function(app, session){
 	})
 
 	app.post('/login', urlencodedParser, function(req, res){
-		var username = req.body.username
+		var username = req.body.username.trim().toLowerCase()
 		var password = req.body.password
 		UserModel.findById(username, function(err, data){
 			if(err){

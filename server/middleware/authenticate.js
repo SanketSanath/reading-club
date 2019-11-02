@@ -2,7 +2,7 @@
 module.exports = function(req, res, next) {
 	if(!req.session.username) {
 		req.session.destroy();
-		res.redirect("/")
+		res.redirect("/enter")
 	} else {
 		next();
 	}
