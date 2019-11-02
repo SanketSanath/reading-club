@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>About Us</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://ajax.aspnetcdn.com/ajax/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="/assets/js/profile.js"></script>
+	<link rel="stylesheet" type="text/css" href="/assets/css/me.css">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700|Raleway:300,400,500&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.0/css/all.css" integrity="sha384-Mmxa0mLqhmOeaE8vgOSbKacftZcsNYDjQzuCOm6D02luYSzBG8vpaOykv9lFQ51Y" crossorigin="anonymous">
+
+	<style type="text/css">
+		body{
+  			font-weight: 300;
+  			font-family: 'Lato', sans-serif;
+  			background: linear-gradient(90deg, #9ebd13 0%, #008552 100%);
+  			color: white;
+		}
+		.thin-text {
+			font-weight: 300;
+		}
+
+		.para {
+			background-color: #0007;
+			padding: 30px;
+			border-radius: 20px;
+			font-size: 1.1rem;
+			color: #fffc;
+			margin-bottom: 30px;
+		}
+	</style>
+</head>
+<body>
+	
+	<!-- Navigation -->
+	<%- include partials/navigation.ejs %>
+
+	<div class="container">
+		<h1 class="text-center">One Reading Club</h1>
+		<h3 class="thin-text text-center">Expanding Our Horizons Together</h3>
+		
+		<div class="container para">
+			<p>Reading makes us smarter, lets us build our own imaginary world, develops critical and analytical thinking, builds vocabulary, improve focus and concentration, expand our horizons and much much more.</p>
+			
+			<p>But in our busy day schedule with instant satisfaction monkey mind, it’s hard to read and finish books. That’s why at One Reading Club we are developing reading habit as a micro habit.</p>
+
+			<p>What is this micro-habit?</p>
+
+			<p>A micro-habit is simple action that doesn’t require much motivation, but will help you build up to a larger goal habit.</p>
+
+			<p>Our goal is not to read 100 pages a day or read 2 books a month. Our goal is to read everyday.  Initially we start by reading minimum one page a day. Reading one page a day is not a big deal. Right? On average if you will read 2-5 pages, it means a book a month, 12-15 book a year. That’s a lot of book to start with.</p>
+
+			<p>So start and keep reading minimum 1 page a day and update your friends at One Reading Club about that daily. It will keep you motivated and on track.</p>
+
+			<p>Happy reading :)</p>
+		</div>
+
+		<div class="container para text-center">
+			<a href="mailto:sanathsanket@gmail.com?Subject=One%20Reading%20Club%20Review%20and%20Suggestions" target="_top" style="color: #fffd; text-decoration: underline;">Send Review and Suggestions to Sanket Sanath</a>
+		</div>
+
+		
+	</div>
+
+</body>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#dashboard_active').removeClass('active')
+		$('me_active').removeClass('active')
+		$('friend_active').removeClass('active')
+		$('#contact_active').addClass('active')
+	})
+</script>
+</html>

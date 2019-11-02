@@ -3,6 +3,7 @@ $(document).ready(function(){
 	$('#dashboard_active').addClass('active')
 	$('#me_active').removeClass('active')
 	$('#friend_active').removeClass('active')
+	$('#contact_active').removeClass('active')
 
 	// update daily activity
 	$("#du-btn-0").click(function(e){

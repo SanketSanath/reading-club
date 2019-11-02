@@ -9,6 +9,23 @@ body {
   --input-padding-y: 0.75rem;
 }
 
+.about-sec {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background: linear-gradient(90deg, #9ebd13 0%, #008552 100%);
+  color: white;
+}
+.thin-text {
+  font-weight: 300;
+}
+
+.para {
+  background-color: #0007;
+  padding: 30px;
+  border-radius: 20px;
+  font-size: 1.1rem;
+  color: #fffc;
+}
 .enter,
 .image {
   min-height: 100vh;
@@ -35,12 +52,12 @@ body {
 .title {
   color: white;
   text-align: center;
-  font-weight: 200;
+  font-weight: 300;
   margin: auto 0px;
 }
 
 .login-heading {
-  font-weight: 200;
+  font-weight: 300;
 }
 
 .btn-login {

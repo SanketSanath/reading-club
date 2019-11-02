@@ -30,6 +30,10 @@ module.exports = function(app, session){
 		})
 	})
 
+	app.get('/contact', authenticate, function(req, res){
+		res.render('contact.ejs')
+	})
+
 
 	app.post('/update_daily', urlencodedParser, authenticate, function(req, res){
 		var username = req.session.username

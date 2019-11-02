@@ -3,6 +3,7 @@ $(document).ready(function(){
 	$('#me_active').addClass('active')
 	$('#dashboard_active').removeClass('active')
 	$('#friend_active').removeClass('active')
+	$('#contact_active').removeClass('active')
 
 	var book_rating = 0
 

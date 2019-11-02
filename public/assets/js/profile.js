@@ -3,6 +3,7 @@ $(document).ready(function(){
 	$('#dashboard_active').removeClass('active')
 	$('me_active').removeClass('active')
 	$('friend_active').removeClass('active')
+	$('#contact_active').removeClass('active')
 
 	$("#follow-btn").click(function(e){
 		e.preventDefault()
