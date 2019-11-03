@@ -14,7 +14,7 @@ var sess = {
 	secret: 'Reading app secret. cant guess',
 	resave: false,
 	saveUninitialized: false,
-	cookie: { maxAge: 3000000000 }
+	cookie: { maxAge: 360000000 }
 }
 
 // set view engine
