@@ -11,11 +11,18 @@ $(document).ready(function(){
 	$('#signin').click(function(e){
 		e.preventDefault()
 		$(this).prop("disabled",true)
-		var name = $('#registerName').val()
-
+		var name = $('#registerName').val().trim()
 		var username = $('#registerUsername').val().trim().toLowerCase()
 		var password = $('#registerPassword').val().trim()
-		
+		var usernameRegex = /^[a-zA-Z0-9]+$/;
+
+		if(username.match(usernameRegex) == null){
+			alert('username is not valid. Only characters A-Z, a-z and 0-9 are acceptable.')
+			$("#registerUsername").focus()
+			$(this).prop("disabled",false)
+			return false
+		}
+
 		$.ajax({
 			type: 'POST',
 			url: '/register',
