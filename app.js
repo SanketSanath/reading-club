@@ -12,8 +12,8 @@ const app = express()
 // express session
 var sess = {
 	secret: 'Reading app secret. cant guess',
-	resave: false,
-	saveUninitialized: false,
+	resave: true,
+	saveUninitialized: true,
 	cookie: { maxAge: 360000000 }
 }
 
